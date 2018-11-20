@@ -12,6 +12,7 @@
 
 float R = 1, G = 0, B = 0;
 float scaleX = 1, scaleY = 1, scaleZ = 1;
+int shape = 1;
 
 
 
@@ -47,7 +48,7 @@ void display()
 	glScalef(scaleX, scaleY, scaleZ);
 
 	// desenha o objeto
-	draw();
+	draw(shape);
 
 	glPopMatrix();
 
@@ -304,12 +305,6 @@ void specialkey (int key, int x, int y){
 
 }
 
-void corJanela()
-{
-	printf("Escolha a cor: ");
-	scanf("%f %f %f: ", &xj, &yj, &zj);
-	glClearColor(xj, yj, zj, 1.0f);
-}
 
 // programa principal
 int main(int argc, char** argv)

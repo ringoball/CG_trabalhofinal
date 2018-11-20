@@ -1,6 +1,9 @@
 {
   "files.associations": {
     "glut.h": "c",
-    "header.h": "c"
+    "header.h": "c",
+    "iosfwd": "cpp",
+    "deque": "cpp",
+    "vector": "cpp"
   }
 }

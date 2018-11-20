@@ -1,6 +1,6 @@
 #include "header.h"
 
-void draw(){
+void draw(int shape){
 
 	switch(shape){
 
@@ -45,7 +45,7 @@ void draw(){
 			break;
 
 		case MESH:
-			drawTriangleMesh("dragon.obj");
+			drawTriangleMesh("miniCooper.obj");
 			break;
 		default:
 			break;

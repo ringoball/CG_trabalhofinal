@@ -1,33 +1,15 @@
-#include<iostream>
-#include<fstream>
-#include<list>
-#include <algorithm>
-#include <iterator>
-#include <stdio.h>
-#include <stdlib.h>
-#define MAX_NOME 30
-
-extern "C" void readFile();
-
-
-
+#include"header.h"
 using namespace std;
 
-void readFile() {
+void fileReader(string fileName) {
   ifstream myReadFile;
 
- string nArq;
+  try {
 
- cout << "Digite o arquivo .obj a ser lido" <<endl;
-
- cin >> nArq;
-
-try {
-
- myReadFile.open(nArq);
-} catch (exception e) {
-  cout << "Arquivo não existe" << endl;
-}
+  myReadFile.open(fileName);
+  } catch (exception e) {
+    cout << "Arquivo não existe" << endl;
+  }
 
  string line;
  list<list<double>> verices;
@@ -51,6 +33,7 @@ try {
 
       tam = pos+1;
       pos = line.find(" ", pos+1);
+      cout<<line.substr(tam, pos-tam);
       vertex.push_back(stod(line.substr(tam, pos-tam)));   // imprime "teste2"
 
       tam = pos+1;
@@ -77,10 +60,4 @@ try {
 cout << verices.front().front();
 
 myReadFile.close();
-}
-
-int main() {
-  readFile();
- 
-  return 0;
 }
