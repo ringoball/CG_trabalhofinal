@@ -1,14 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <GL/glut.h>
 #include <string.h>
-
-
-#ifdef DEFINE_VARIABLES
-#define EXTERN /* nothing */
-#else
-#define EXTERN extern
-#endif /* DEFINE_VARIABLES */
 
 #define MESH 0
 #define TEAPOT 1
@@ -20,6 +14,8 @@
 #define OCTAHEDRON 7
 #define TETRAHEDRON 8
 #define DODECAHEDRON 9
+
+using namespace std;
 
 
 // declara��o de vari�veis globais
@@ -42,4 +38,4 @@ void escala();
 void mudarobjetoposicao();
 void mudarCorObjeto();
 void corjanela();
-void drawTriangleMesh(char[]);
+void drawTriangleMesh(string);

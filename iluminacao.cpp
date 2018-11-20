@@ -37,17 +37,17 @@ void display()
 	glPushMatrix();
 
 	        // cria matrizes de transforma��o
-		glRotatef ((GLfloat) rotationX, 1.0, 0.0, 0.0);
-		glRotatef ((GLfloat) rotationY, 0.0, 1.0, 0.0);
-		glRotatef ((GLfloat) rotationZ, 0.0, 0.0, 1.0);
+	glRotatef ((GLfloat) rotationX, 1.0, 0.0, 0.0);
+	glRotatef ((GLfloat) rotationY, 0.0, 1.0, 0.0);
+	glRotatef ((GLfloat) rotationZ, 0.0, 0.0, 1.0);
 
-		glTranslatef ((GLfloat) translationX, 0.0, 0.0);
-		glTranslatef (0.0, (GLfloat) translationY, 0.0);
+	glTranslatef ((GLfloat) translationX, 0.0, 0.0);
+	glTranslatef (0.0, (GLfloat) translationY, 0.0);
 
-		glScalef(scaleX, scaleY, scaleZ);
+	glScalef(scaleX, scaleY, scaleZ);
 
-		// desenha o objeto
-		draw();
+	// desenha o objeto
+	draw();
 
 	glPopMatrix();
 
@@ -246,6 +246,7 @@ void keyboard (unsigned char key, int x, int y){
 
 		case 'm' :
 			mudarCorObjeto();
+			printf("Alterado\n");
 			break;
 
 		// case 'p':

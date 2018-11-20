@@ -1,6 +1,6 @@
 #include"header.h"
 
-void drawTriangleMesh(char file_name[])
+void drawTriangleMesh(string file_name)
 {
 
 	/*************** implementar *************/
