@@ -8,99 +8,31 @@
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <string.h>
+#include "header.h"
 
-#define MESH 0
-#define TEAPOT 1
-#define CUBE 2
-#define SPHERE 3
-#define CONE 4
-#define TORUS 5
-#define ICOSAHEDRON 6
-#define OCTAHEDRON 7
-#define TETRAHEDRON 8
-#define DODECAHEDRON 9
-
-
-// declara��o de vari�veis globais
-static int shape = 1, translationX = 0, translationY = 0, rotationX = 0, rotationY = 0, rotationZ = 0;
-GLfloat angle, f_aspect;
-float i = 0, j = 0, k = 1, x = 1, y = 1, z = 1, xj = 1, yj = 1, zj = 1;
+float R = 1, G = 0, B = 0;
+float scaleX = 1, scaleY = 1, scaleZ = 1;
 
 
 
-// fun��o para desenhar uma malha de tri�ngulos 3D
-void drawTriangleMesh(char file_name[])
-{
-
-	/*************** implementar *************/
-
+void changeColor(float i, float j, float k) {
+	R = i;
+	G = j;
+	B = k;
 }
 
-
-
-// fun��o para desenhar objetos
-void draw(){
-
-	switch(shape){
-
-		case TEAPOT:
-			glutSolidTeapot(50.0f);
-			break;
-
-		case CUBE:
-			glutSolidCube(50.0f);
-			break;
-
-		case SPHERE:
-			glutSolidSphere(50.0, 50.0, 50.0);
-			break;
-
-		case CONE:
-			glutSolidCone(50.0, 50.0, 50.0, 50.0);
-			break;
-
-		case TORUS:
-			glutSolidTorus(10.0, 50.0, 50.0, 50.0);
-			break;
-
-		case ICOSAHEDRON:
-			glScalef(50.0, 50.0, 50.0);
-			glutSolidIcosahedron();
-			break;
-
-		case OCTAHEDRON:
-			glScalef(50.0, 50.0, 50.0);
-			glutSolidOctahedron();
-			break;
-
-		case TETRAHEDRON:
-			glScalef(50.0, 50.0, 50.0);
-			glutSolidTetrahedron();
-			break;
-
-		case DODECAHEDRON:
-			glScalef(50.0, 50.0, 50.0);
-			glutSolidDodecahedron();
-			break;
-
-		case MESH:
-			drawTriangleMesh("dragon.obj");
-			break;
-		default:
-			break;
-	}
-
+void changeScale(float i, float j, float k) {
+	scaleX = i;
+	scaleY = j;
+	scaleZ = k;
 }
 
 // fun��o callback chamada para fazer o desenho
-void display(void)
+void display()
 {
-
-
 	// limpa a janela e o depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glColor3f(i, j, k);
+	glColor3f(R,G,B);
 
 	glPushMatrix();
 
@@ -111,7 +43,8 @@ void display(void)
 
 		glTranslatef ((GLfloat) translationX, 0.0, 0.0);
 		glTranslatef (0.0, (GLfloat) translationY, 0.0);
-		glScalef(x, y, z);
+
+		glScalef(scaleX, scaleY, scaleZ);
 
 		// desenha o objeto
 		draw();
@@ -312,12 +245,12 @@ void keyboard (unsigned char key, int x, int y){
 			break;
 
 		case 'm' :
-			mudar();
+			mudarCorObjeto();
 			break;
 
-		case 'p':
-			perspectiva();
-			break;
+		// case 'p':
+		// 	perspectiva();
+		// 	break;
 
 		// fecha a janela
 		case 27:
@@ -370,47 +303,7 @@ void specialkey (int key, int x, int y){
 
 }
 
-void escala()
-{
-	printf("Coloque a nova escala: ");
-	scanf("%f %f %f", &x,&y, &z);
-	glutDisplayFunc(display);
-}
-
-void mudarobjetoposicao()
-{
-	GLsizei largura, altura;
-
-	// Evita a divisao por zero
-	//if(h == 0) h = 1;
-
-	// Atualiza as variáveis
-	largura = 200;
-	altura = 150;
-
-	// Especifica as dimensões da Viewport
-	glViewport(0, 0, largura, altura);
-
-	// Inicializa o sistema de coordenadas
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	// Estabelece a janela de seleção (esquerda, direita, inferior,
-	// superior) mantendo a proporção com a janela de visualização
-	if (largura <= altura)
-		gluOrtho2D (-40.0f, 40.0f, -40.0f*altura/largura, 40.0f*altura/largura);
-	else
-		gluOrtho2D (-40.0f*largura/altura, 40.0f*largura/altura, -40.0f, 40.0f);
-}
-
-void mudar()
-{
-	printf("Escolha a cor: ");
-	scanf("%f %f %f: ", &i, &j, &k);
-	glutDisplayFunc(display);
-}
-
-void corjanela()
+void corJanela()
 {
 	printf("Escolha a cor: ");
 	scanf("%f %f %f: ", &xj, &yj, &zj);
