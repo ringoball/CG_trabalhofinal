@@ -24,7 +24,7 @@
 // declara��o de vari�veis globais
 static int shape = 1, translationX = 0, translationY = 0, rotationX = 0, rotationY = 0, rotationZ = 0;
 GLfloat angle, f_aspect;
-float i = 0, j = 0, k = 1;
+float i = 0, j = 0, k = 1, x = 1, y = 1, z = 1, xj = 1, yj = 1, zj = 1;
 
 
 
@@ -36,25 +36,6 @@ void drawTriangleMesh(char file_name[])
 
 }
 
-/*void ler()
-{
-
-	char c;
-	char nome[50];
-	printf("Digite o nome do arquivo: ");
-	scanf("%s", nome);
-	FILE *arq, *arq2;
-	arq = fopen("nome", "r");
-	if(arq == NULL)
-		printf("Erro, não foi possível abrir o arquivo.");
-	arq2 = fopen("new.txt", "w");
-	//while (!feof(arq))
-    {
-  /*     fscanf(arq,"%c ",&c);
-       fprintf(arq2,"%c",c);
-			 memset(&c, 0, 1);
-    }
-}*/
 
 
 // fun��o para desenhar objetos
@@ -130,6 +111,7 @@ void display(void)
 
 		glTranslatef ((GLfloat) translationX, 0.0, 0.0);
 		glTranslatef (0.0, (GLfloat) translationY, 0.0);
+		glScalef(x, y, z);
 
 		// desenha o objeto
 		draw();
@@ -154,7 +136,7 @@ void init(void)
 	GLint espec_material = 60;
 
  	// especifica que a cor de fundo da janela ser� preta
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(xj, yj, zj, 1.0f);
 
 	// habilita o modelo de coloriza��o de Gouraud
 	glShadeModel(GL_SMOOTH);
@@ -191,13 +173,6 @@ void init(void)
 
     	angle=45;
 
-}
-
-void mudar()
-{
-	printf("Escolha a cor");
-	scanf("%f %f %f: ", &i, &j, &k);
-	glutDisplayFunc(display);
 }
 
 // fun��o usada para especificar o volume de visualiza��o
@@ -261,7 +236,6 @@ void mouse(int button, int state, int x, int y)
 	// exibe objetos na tela
 	glutPostRedisplay();
 }
-
 
 // teclado
 void keyboard (unsigned char key, int x, int y){
@@ -341,6 +315,10 @@ void keyboard (unsigned char key, int x, int y){
 			mudar();
 			break;
 
+		case 'p':
+			perspectiva();
+			break;
+
 		// fecha a janela
 		case 27:
 			exit(0);
@@ -392,6 +370,52 @@ void specialkey (int key, int x, int y){
 
 }
 
+void escala()
+{
+	printf("Coloque a nova escala: ");
+	scanf("%f %f %f", &x,&y, &z);
+	glutDisplayFunc(display);
+}
+
+void mudarobjetoposicao()
+{
+	GLsizei largura, altura;
+
+	// Evita a divisao por zero
+	//if(h == 0) h = 1;
+
+	// Atualiza as variáveis
+	largura = 200;
+	altura = 150;
+
+	// Especifica as dimensões da Viewport
+	glViewport(0, 0, largura, altura);
+
+	// Inicializa o sistema de coordenadas
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	// Estabelece a janela de seleção (esquerda, direita, inferior,
+	// superior) mantendo a proporção com a janela de visualização
+	if (largura <= altura)
+		gluOrtho2D (-40.0f, 40.0f, -40.0f*altura/largura, 40.0f*altura/largura);
+	else
+		gluOrtho2D (-40.0f*largura/altura, 40.0f*largura/altura, -40.0f, 40.0f);
+}
+
+void mudar()
+{
+	printf("Escolha a cor: ");
+	scanf("%f %f %f: ", &i, &j, &k);
+	glutDisplayFunc(display);
+}
+
+void corjanela()
+{
+	printf("Escolha a cor: ");
+	scanf("%f %f %f: ", &xj, &yj, &zj);
+	glClearColor(xj, yj, zj, 1.0f);
+}
 
 // programa principal
 int main(int argc, char** argv)
