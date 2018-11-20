@@ -55,8 +55,6 @@ void display()
 	glutSwapBuffers();
 }
 
-
-
 // inicializa par�metros de rendering
 void init(void)
 {
@@ -108,6 +106,8 @@ void init(void)
     	angle=45;
 
 }
+
+
 
 // fun��o usada para especificar o volume de visualiza��o
 void visualization(void)
@@ -173,6 +173,7 @@ void mouse(int button, int state, int x, int y)
 
 // teclado
 void keyboard (unsigned char key, int x, int y){
+	
 
 	switch (key) {
 
@@ -248,6 +249,8 @@ void keyboard (unsigned char key, int x, int y){
 		case 'm' :
 			mudarCorObjeto();
 			printf("Alterado\n");
+			system("clear");
+			updateMenu();
 			break;
 
 		// case 'p':
@@ -309,6 +312,7 @@ void specialkey (int key, int x, int y){
 // programa principal
 int main(int argc, char** argv)
 {
+	char sair;
 //	ler();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -316,12 +320,14 @@ int main(int argc, char** argv)
 	glutInitWindowPosition (100, 100);
 	glutCreateWindow("Visualizacao 3D");
 	init();
+	updateMenu();
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutMouseFunc(mouse);
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(specialkey);
 	glutMainLoop();
+	
 
 	return 0;
 }
