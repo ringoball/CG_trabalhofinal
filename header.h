@@ -26,6 +26,7 @@ static int translationX = 0, translationY = 0, rotationX = 0, rotationY = 0, rot
 static GLfloat angle, f_aspect;
 static float xj = 1, yj = 1, zj = 1;
 
+
 using namespace std;
 
 void draw(int);
@@ -46,5 +47,7 @@ void corJanela(float, float, float);
 void drawTriangleMesh(string);
 void fileReader(string);
 void updateMenu();
-void visualizacao();//(GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble);
+void visualizacao();//(double, double, double,double, double, double,double, double, double);
 void drawWire(int);
+void mudarPerspectivaObjeto(double, double, double,double, double, double,double, double, double);
+void changePerspectiva(double, double, double, double, double, double, double, double, double);
