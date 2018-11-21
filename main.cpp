@@ -247,9 +247,11 @@ void keyboard (unsigned char key, int x, int y){
 
 		case 'm' :
 			mudarCorObjeto();
-			printf("Alterado\n");
 			break;
 
+		case 's': 
+			mudarEscalaObjeto();
+			break;
 		// case 'p':
 		// 	perspectiva();
 		// 	break;

@@ -4,6 +4,7 @@
     "header.h": "c",
     "iosfwd": "cpp",
     "deque": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "fstream": "cpp"
   }
 }
