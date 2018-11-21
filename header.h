@@ -47,4 +47,4 @@ void drawTriangleMesh(string);
 void fileReader(string);
 void updateMenu();
 void visualizacao();//(GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble);
-
+void drawWire(int);
