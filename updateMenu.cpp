@@ -1,6 +1,5 @@
 #include "header.h"
 
-
 void updateMenu(){
     system("clear");
     cout << "-----------------Menu Usuario-------------"<<endl;

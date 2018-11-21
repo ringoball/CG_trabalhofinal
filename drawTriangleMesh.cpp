@@ -50,7 +50,6 @@ void drawTriangleMesh(string fileName) {
 	if (outFile.is_open()) {
 	 	for (list<string> n : verices) {
 			for(string x : n){
-				cout<<x<<endl;
 				outFile << x << " ";
 			}
 			outFile << endl;
