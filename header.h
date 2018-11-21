@@ -39,9 +39,12 @@ void mouse();
 void keyboard(unsigned char, int, int);
 void specialkey();
 void escala();
-void mudarobjetoposicao();
+void mudarObjetoPosicao();
+void mudarEscalaObjeto();
 void mudarCorObjeto();
 void corJanela(float, float, float);
 void drawTriangleMesh(string);
 void fileReader(string);
+void updateMenu();
 void visualizacao();//(GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble);
+

@@ -1,8 +1,8 @@
 #include"header.h"
 
-void drawTriangleMesh(string fileName)
-{
+void drawTriangleMesh(string fileName) {
 	ifstream myReadFile;
+	ofstream outFile;
 
 	try {
 
@@ -12,7 +12,7 @@ void drawTriangleMesh(string fileName)
 	}
 
 	string line;
-	list<list<double> > verices;
+	list<list<string> > verices;
 
 
 	if (myReadFile.is_open()) {
@@ -20,43 +20,46 @@ void drawTriangleMesh(string fileName)
 
 
 			getline(myReadFile,line);
-			if(line[0] == 'v' & line[1] == ' '){
-			int pos, tam;
-			list<double> vertex;
+			if(line[0] == 'v' & line[1] == ' ') {
+				int pos, tam;
+				list<string> vertex;
 
-			pos = line.find(" ", 0);
-			cout << line.substr(0, pos) << endl;         // imprime "teste"
+				vertex.push_back("v");
+				tam = 0;
+				pos = line.find(" ", pos+1);
 
-			tam = pos+1;
-			pos = line.find(" ", pos+1);
-			cout << line.substr(tam, pos-tam) << endl;   // imprime "teste1"
+				tam = pos+1;
+				pos = line.find(" ", pos+1);
+				vertex.push_back((line.substr(tam, pos-tam)));  // imprime "teste2"
 
-			tam = pos+1;
-			pos = line.find(" ", pos+1);
-			vertex.push_back(stod(line.substr(tam, pos-tam)));   // imprime "teste2"
+				tam = pos+1;
+				pos = line.find(" ", pos+1);
+				vertex.push_back((line.substr(tam, pos-tam)));  // imprime "teste2"
 
-			tam = pos+1;
-			pos = line.find(" ", pos+1);
-			vertex.push_back(stod(line.substr(tam, pos-tam)));  // imprime "teste2"
+				tam = pos+1;
+				pos = line.find(" ", pos+1);
+				vertex.push_back((line.substr(tam, pos-tam)));
 
-			tam = pos+1;
-			pos = line.find(" ", pos+1);
-			vertex.push_back(stod(line.substr(tam, pos-tam)));
-
-			verices.push_back(vertex);
-		}
+				verices.push_back(vertex);
+			}
 
 
 		}
 	}
-	 for (list<double> n : verices) {
-		for(double x : n){
-			cout << x << endl;
+	outFile.open("triangleMeshObject.obj");
+	if (outFile.is_open()) {
+	 	for (list<string> n : verices) {
+			for(string x : n){
+				cout<<x<<endl;
+				outFile << x << " ";
+			}
+			outFile << endl;
 		}
 	}
 
-	cout << "aaaaaaaaaaaa"<<verices.front().front();
+	cout <<verices.front().front();
 
+	outFile.close();
 	myReadFile.close();
 	
 
