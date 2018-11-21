@@ -13,7 +13,7 @@
 float R = 1, G = 0, B = 0;
 float scaleX = 1, scaleY = 1, scaleZ = 1;
 int shape = 1;
-
+GLdouble eyeX = 0,  eyeY = 80,  eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1,  upZ = 0;
 
 
 void changeColor(float i, float j, float k) {
@@ -109,6 +109,15 @@ void init(void)
 
 }
 
+/*void visualization(){
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+gluPerspective(angle, f_aspect, 0.4, 500);
+gluLookAt(120.0,120.0,120.0,0.0,0.0,0.0,0.0,-120.0,0.0);
+glMatrixMode(GL_MODELVIEW);
+glLoadIdentity();
+}*/
+
 // fun��o usada para especificar o volume de visualiza��o
 void visualization(void)
 {
@@ -128,7 +137,8 @@ void visualization(void)
 	glLoadIdentity();
 
 	// especifica posi��o do observador e do alvo
-    	gluLookAt(0, 80, 200, 0, 0, 0, 0, 1, 0);
+			//gluLookAt(120.0,120.0,120.0,0.0,0.0,0.0,0.0,-120.0,0.0);
+    	gluLookAt(eyeX,  eyeY,  eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
 
 }
 
@@ -248,10 +258,37 @@ void keyboard (unsigned char key, int x, int y){
 		case 'm' :
 			mudarCorObjeto();
 			break;
-
 		case 's': 
 			mudarEscalaObjeto();
 			break;
+		case '!':
+			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = -120, upY = 1,  upZ = 0;
+			break;
+		case '@':
+			eyeX = -120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = -120,  upZ = 0;
+			break;
+		case '#':
+			eyeX = 120,  eyeY = -120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = -120,  upZ = 0;
+			break;
+		case '$':
+			eyeX = 120,  eyeY = 120,  eyeZ = -120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 120,  upZ = 0;
+			break;
+		case '%':
+			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = -120,  upZ = 0;
+			break;
+		case '"':
+			eyeX = -120,  eyeY = -120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = -0, upY = -120,  upZ = 0;
+			break;
+		case '&':
+			eyeX = 120,  eyeY = -120,  eyeZ = -120, centerX = 0, centerY = 0, centerZ = 0, upX = -0, upY = 120,  upZ = 0;
+			break;
+		case '*':
+			eyeX = -190,  eyeY = -130,  eyeZ = -110, centerX = 20, centerY = 30, centerZ = 10, upX = 80, upY = 120,  upZ = 90;
+			break;
+		case '/':
+			eyeX = 0,  eyeY = 80,  eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1,  upZ = 0;
+			break;
+
 		// case 'p':
 		// 	perspectiva();
 		// 	break;

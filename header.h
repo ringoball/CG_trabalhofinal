@@ -45,3 +45,4 @@ void mudarCorObjeto();
 void corJanela(float, float, float);
 void drawTriangleMesh(string);
 void fileReader(string);
+void visualizacao();//(GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble);
