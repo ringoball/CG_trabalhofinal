@@ -1,5 +1,5 @@
 #include"header.h"
-void mudarobjetoposicao()
+void mudarObjetoPosicao()
 {
 	GLsizei largura, altura;
 

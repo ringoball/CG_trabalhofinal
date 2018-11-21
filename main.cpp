@@ -260,7 +260,9 @@ void keyboard (unsigned char key, int x, int y){
 			system("clear");
 			updateMenu();
 			break;
-
+		case 's': 
+			mudarEscalaObjeto();
+			break;
 		case '!':
 			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = -120, upY = 1,  upZ = 0;
 			break;
