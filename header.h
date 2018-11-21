@@ -23,6 +23,7 @@
 
 // declara��o de vari�veis globais
 static int translationX = 0, translationY = 0, rotationX = 0, rotationY = 0, rotationZ = 0;
+static int translationX1 = 70, translationY1 = 70, rotationX1 = 0, rotationY1 = 0, rotationZ1 = 0;
 static GLfloat angle, f_aspect;
 static float xj = 1, yj = 1, zj = 1;
 
@@ -47,4 +48,4 @@ void drawTriangleMesh(string);
 void fileReader(string);
 void updateMenu();
 void visualizacao();//(GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble);
-
+void drawWire(int);

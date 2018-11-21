@@ -10,11 +10,12 @@
 #include <string.h>
 #include "header.h"
 
+bool changeObject=false;
 float R = 1, G = 0, B = 0;
 float scaleX = 1, scaleY = 1, scaleZ = 1;
 int shape = 1;
 GLdouble eyeX = 0,  eyeY = 80,  eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1,  upZ = 0;
-
+bool drawFormat = false;
 
 void changeColor(float i, float j, float k) {
 	R = i;
@@ -48,8 +49,60 @@ void display()
 	glScalef(scaleX, scaleY, scaleZ);
 
 	// desenha o objeto
-	draw(shape);
+	if(drawFormat)
+		drawWire(shape);
+	else{
+		draw(shape);
+		}
+	glPopMatrix();
 
+	glutSwapBuffers();
+}
+
+void displayMaisDeUm()
+{
+	// limpa a janela e o depth buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glColor3f(R,G,B);
+
+	glPushMatrix();
+
+	        // cria matrizes de transforma��o
+	glRotatef ((GLfloat) rotationX, 1.0, 0.0, 0.0);
+	glRotatef ((GLfloat) rotationY, 0.0, 1.0, 0.0);
+	glRotatef ((GLfloat) rotationZ, 0.0, 0.0, 1.0);
+
+	glTranslatef ((GLfloat) translationX, 0.0, 0.0);
+	glTranslatef (0.0, (GLfloat) translationY, 0.0);
+
+	glScalef(scaleX, scaleY, scaleZ);
+
+	// desenha o objeto
+	if(drawFormat)
+		drawWire(shape);
+	else{
+		draw(shape);
+		}
+	glPopMatrix();
+
+	glPushMatrix();
+
+	        // cria matrizes de transforma��o
+	glRotatef ((GLfloat) rotationX1, 1.0, 0.0, 0.0);
+	glRotatef ((GLfloat) rotationY1, 0.0, 1.0, 0.0);
+	glRotatef ((GLfloat) rotationZ1, 0.0, 0.0, 1.0);
+
+	glTranslatef ((GLfloat) translationX1, 0.0, 0.0);
+	glTranslatef (0.0, (GLfloat) translationY1, 0.0);
+
+	glScalef(scaleX, scaleY, scaleZ);
+
+	// desenha o objeto
+	if(drawFormat)
+		drawWire(3);
+	else{
+		draw(3);
+		}
 	glPopMatrix();
 
 	glutSwapBuffers();
@@ -181,17 +234,27 @@ void mouse(int button, int state, int x, int y)
 
 // teclado
 void keyboard (unsigned char key, int x, int y){
-	
+
 
 	switch (key) {
 
 		// rota��o em torno do eixo X
+		
+		case'-':
+			changeObject = changeObject ? false:true;
+
 		case 'x':
+			if(changeObject)
 			rotationX = (rotationX + 5) % 360;
+			else
+			rotationX1 = (rotationX1 + 5) % 360;
 			break;
 
 		case 'X':
+			if(changeObject)
 			rotationX = (rotationX - 5) % 360;
+			else
+			rotationX1 = (rotationX1 - 5) % 360;
 			break;
 
 		// rota��o em torno do eixo Y
@@ -260,35 +323,38 @@ void keyboard (unsigned char key, int x, int y){
 			system("clear");
 			updateMenu();
 			break;
-		case 's': 
+		case 's':
 			mudarEscalaObjeto();
 			break;
 		case '!':
-			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = -120, upY = 1,  upZ = 0;
+			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 40, centerY = 10, centerZ = 30, upX = -120, upY = 1,  upZ = 0;
 			break;
 		case '@':
-			eyeX = -120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = -120,  upZ = 0;
+			eyeX = -120,  eyeY = 120,  eyeZ = 120, centerX = 60, centerY = 20, centerZ = 10, upX = 0, upY = -120,  upZ = 0;
 			break;
 		case '#':
-			eyeX = 120,  eyeY = -120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = -120,  upZ = 0;
+			eyeX = 120,  eyeY = -120,  eyeZ = 120, centerX = 10, centerY = 10, centerZ = 10, upX = 0, upY = -120,  upZ = 0;
 			break;
 		case '$':
-			eyeX = 120,  eyeY = 120,  eyeZ = -120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 120,  upZ = 0;
+			eyeX = 120,  eyeY = 120,  eyeZ = -120, centerX = 30, centerY = 0, centerZ = 20, upX = 0, upY = 120,  upZ = 0;
 			break;
 		case '%':
-			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = -120,  upZ = 0;
+			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 40, centerZ = 50, upX = 0, upY = -120,  upZ = 0;
 			break;
 		case '"':
-			eyeX = -120,  eyeY = -120,  eyeZ = 120, centerX = 0, centerY = 0, centerZ = 0, upX = -0, upY = -120,  upZ = 0;
+			eyeX = -120,  eyeY = -120,  eyeZ = 120, centerX = 20, centerY = 20, centerZ = 0, upX = -0, upY = -120,  upZ = 0;
 			break;
 		case '&':
-			eyeX = 120,  eyeY = -120,  eyeZ = -120, centerX = 0, centerY = 0, centerZ = 0, upX = -0, upY = 120,  upZ = 0;
+			eyeX = 120,  eyeY = -120,  eyeZ = -120, centerX = 70, centerY = 100, centerZ = 40, upX = -0, upY = 120,  upZ = 0;
 			break;
 		case '*':
 			eyeX = -190,  eyeY = -130,  eyeZ = -110, centerX = 20, centerY = 30, centerZ = 10, upX = 80, upY = 120,  upZ = 90;
 			break;
 		case '/':
 			eyeX = 0,  eyeY = 80,  eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1,  upZ = 0;
+			break;
+		case '=':
+			drawFormat = drawFormat ? false : true;
 			break;
 
 		// case 'p':
@@ -359,13 +425,16 @@ int main(int argc, char** argv)
 	glutCreateWindow("Visualizacao 3D");
 	init();
 	updateMenu();
-	glutDisplayFunc(display);
+
+	glutDisplayFunc(displayMaisDeUm);
 	glutReshapeFunc(reshape);
+	glutReshapeFunc(reshape);
+
 	glutMouseFunc(mouse);
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(specialkey);
 	glutMainLoop();
-	
+
 
 	return 0;
 }

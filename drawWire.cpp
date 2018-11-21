@@ -1,52 +1,51 @@
 #include "header.h"
 
-void draw(int shape){
+void drawWire(int shape){
 
 	switch(shape){
 
 		case TEAPOT:
-			glutSolidTeapot(50.0f);
+			glutWireTeapot(50.0f);
 			break;
 
 		case CUBE:
-			glutSolidCube(50.0f);
+			glutWireCube(50.0f);
 			break;
 
 		case SPHERE:
-			glutSolidSphere(50.0, 50.0, 50.0);
+			glutWireSphere(50.0, 50.0, 50.0);
 			break;
 
 		case CONE:
-			glutSolidCone(50.0, 50.0, 50.0, 50.0);
+			glutWireCone(50.0, 50.0, 50.0, 50.0);
 			break;
 
 		case TORUS:
-			glutSolidTorus(10.0, 50.0, 50.0, 50.0);
+			glutWireTorus(10.0, 50.0, 50.0, 50.0);
 			break;
 
 		case ICOSAHEDRON:
 			glScalef(50.0, 50.0, 50.0);
-			glutSolidIcosahedron();
+			glutWireIcosahedron();
 			break;
 
 		case OCTAHEDRON:
 			glScalef(50.0, 50.0, 50.0);
-			glutSolidOctahedron();
+			glutWireOctahedron();
 			break;
 
 		case TETRAHEDRON:
 			glScalef(50.0, 50.0, 50.0);
-			glutSolidTetrahedron();
+			glutWireTetrahedron();
 			break;
 
 		case DODECAHEDRON:
 			glScalef(50.0, 50.0, 50.0);
-			glutSolidDodecahedron();
+			glutWireDodecahedron();
 			break;
 
 		case MESH:
 			drawTriangleMesh("miniCooper.obj");
-			
 			break;
 		default:
 			break;
