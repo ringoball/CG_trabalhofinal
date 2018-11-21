@@ -14,11 +14,24 @@ bool changeObject=false;
 float R = 1, G = 0, B = 0;
 float scaleX = 1, scaleY = 1, scaleZ = 1;
 int shape = 1;
-GLdouble eyeX = 0,  eyeY = 80,  eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1,  upZ = 0;
-bool drawFormat = false;
 int it = 0;
 int nObject = 1;
+bool drawFormat = false;
+double eyeX = 0, eyeY = 80, eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1, upZ = 0;
+//0, 80, 200, 0, 0, 0, 0, 1, 0
 
+void changePerspectiva(double i, double j, double k, double l, double m, double n,double o, double p, double q)
+{
+	eyeX = i;
+	eyeY = j;
+	eyeZ = k;
+	centerX = l;
+	centerY = m;
+	centerZ = n;
+	upX = o;
+ 	upY = p;
+	upZ = q;
+}
 
 void changeColor(float i, float j, float k) {
 	R = i;
@@ -147,7 +160,10 @@ void visualization(void)
 
 	// especifica posi��o do observador e do alvo
 			//gluLookAt(120.0,120.0,120.0,0.0,0.0,0.0,0.0,-120.0,0.0);
-    	gluLookAt(eyeX,  eyeY,  eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+ //eyeX eyeY eyeZ centerX centerY centerZ upX upY upZ
+// eyeX eyeY eyeZ centerX centerY centerZ upX upY upZ
+			gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+			//gluLookAt(0, 80, 200, 0, 0, 0, 0, 1, 0);
 
 }
 
@@ -296,31 +312,31 @@ void keyboard (unsigned char key, int x, int y){
 			mudarEscalaObjeto();
 			break;
 		case '!':
-			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 40, centerY = 10, centerZ = 30, upX = -120, upY = 1,  upZ = 0;
+			mudarPerspectivaObjeto(120, 120, 120, 40, 10, 30, -120, 1,  0);
 			break;
 		case '@':
-			eyeX = -120,  eyeY = 120,  eyeZ = 120, centerX = 60, centerY = 20, centerZ = 10, upX = 0, upY = -120,  upZ = 0;
+			mudarPerspectivaObjeto (-120.0, 120.0, 120.0, 60.0, 20.0, 10.0, 0.0, -120.0, 0.0);
 			break;
 		case '#':
-			eyeX = 120,  eyeY = -120,  eyeZ = 120, centerX = 10, centerY = 10, centerZ = 10, upX = 0, upY = -120,  upZ = 0;
+			mudarPerspectivaObjeto(140.0, -150.0, 130.0, 10.0, 10.0, 10.0, 0.0, -120.0, 0.0);
 			break;
 		case '$':
-			eyeX = 120,  eyeY = 120,  eyeZ = -120, centerX = 30, centerY = 0, centerZ = 20, upX = 0, upY = 120,  upZ = 0;
+			mudarPerspectivaObjeto(150.0, 110.0, -100.0, 30.0, 0.0, 20.0, 0.0, 120.0, 0.0);
 			break;
 		case '%':
-			eyeX = 120,  eyeY = 120,  eyeZ = 120, centerX = 0, centerY = 40, centerZ = 50, upX = 0, upY = -120,  upZ = 0;
+			mudarPerspectivaObjeto(110.0, 150.0, 120.0, 0.0, 40.0, 50.0, 0.0, -120.0, 0.0);
 			break;
 		case '"':
-			eyeX = -120,  eyeY = -120,  eyeZ = 120, centerX = 20, centerY = 20, centerZ = 0, upX = -0, upY = -120,  upZ = 0;
+			mudarPerspectivaObjeto(-110.0, -130.0, 120.0, 20.0, 20.0, 0.0, 0.0, -120.0, 0.0);
 			break;
 		case '&':
-			eyeX = 120,  eyeY = -120,  eyeZ = -120, centerX = 70, centerY = 100, centerZ = 40, upX = -0, upY = 120,  upZ = 0;
+			mudarPerspectivaObjeto(180.0, -150.0, -90.0, 70.0, 100.0, 40.0, 0.0, 120.0, 0.0);
 			break;
 		case '*':
-			eyeX = -190,  eyeY = -130,  eyeZ = -110, centerX = 20, centerY = 30, centerZ = 10, upX = 80, upY = 120,  upZ = 90;
+			mudarPerspectivaObjeto(-190.0, -130.0, -110.0, 20.0, 30.0, 10.0, 80.0, 120.0, 90.0);
 			break;
 		case '/':
-			eyeX = 0,  eyeY = 80,  eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1,  upZ = 0;
+			mudarPerspectivaObjeto(0.0, 80.0, 200.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 			break;
 		case '=':
 			drawFormat = drawFormat ? false : true;
