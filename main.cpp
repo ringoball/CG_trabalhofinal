@@ -16,6 +16,7 @@ int shape = 1;
 bool drawFormat = false;
 double eyeX = 0, eyeY = 80, eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1, upZ = 0;
 //0, 80, 200, 0, 0, 0, 0, 1, 0
+float j1 = 1.0, j2 = 1.0, j3 = 1.0;
 
 void changePerspectiva(double i, double j, double k, double l, double m, double n,double o, double p, double q)
 {
@@ -30,6 +31,12 @@ void changePerspectiva(double i, double j, double k, double l, double m, double 
 	upZ = q;
 }
 
+void changeColorJanela(float i, float j, float k) {
+	j1 = i;
+	j2 = j;
+	j3 = k;
+}
+
 void changeColor(float i, float j, float k) {
 	R = i;
 	G = j;
@@ -40,6 +47,36 @@ void changeScale(float i, float j, float k) {
 	scaleX = i;
 	scaleY = j;
 	scaleZ = k;
+}
+
+void outroobjeto()
+{
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glColor3f(R,G,B);
+
+	glPushMatrix();
+
+	        // cria matrizes de transforma��o
+	glRotatef ((GLfloat) rotationX, 1.0, 0.0, 0.0);
+	glRotatef ((GLfloat) rotationY, 0.0, 1.0, 0.0);
+	glRotatef ((GLfloat) rotationZ, 0.0, 0.0, 1.0);
+
+	glTranslatef ((GLfloat) translationX, 0.0, 0.0);
+	glTranslatef (0.0, (GLfloat) translationY, 0.0);
+
+	glScalef(scaleX, scaleY, scaleZ);
+
+	// desenha o objeto
+	if(drawFormat)
+		drawWire(shape);
+	else
+		draw(shape);
+
+	glPopMatrix();
+
+	glutSwapBuffers();
+
 }
 
 // fun��o callback chamada para fazer o desenho
@@ -313,7 +350,9 @@ void keyboard (unsigned char key, int x, int y){
 		case '=':
 			drawFormat = drawFormat ? false : true;
 			break;
-
+		case 'j':
+			corJanela(j1, j2, j3);
+			break;
 		// case 'p':
 		// 	perspectiva();
 		// 	break;

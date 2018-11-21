@@ -33,6 +33,7 @@ void draw(int);
 void display();
 void changeColor(float, float, float);
 void changeScale(float, float, float);
+void changeColorJanela(float, float, float);
 void init();
 void visualization();
 void reshape();
