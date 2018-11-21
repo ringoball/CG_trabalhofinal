@@ -38,7 +38,7 @@ void updateMenu(){
     cout << "10. Mudança de escala, Tecla s"<<endl;
     cout << "11. Mudança de Cor de Fundo, tecla c"<<endl;
     cout << "12. Para mudar de sólido para arame ou arame para sólido aperte = " << endl;
-    cout << "____Funções de perspectiva______________"
-    cout << "13. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %, &, *, " <<endl;
+    cout << "____Funções de perspectiva______________" << endl;
+    cout << "13. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %%, &, *, \" " <<endl;
     cout << "14. Para volar a perspectiva inicial use / " << endl;
 }
