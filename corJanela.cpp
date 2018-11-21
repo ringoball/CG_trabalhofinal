@@ -1,8 +1,9 @@
 #include "header.h"
 
-void corJanela(float rJanela, float gJanela, float bJanela)
+void corJanela(float rJanela, float hJanela, float bJanela)
 {
-	printf("Escolha a cor: ");
-	scanf("%f %f %f: ", &rJanela, &gJanela, &bJanela);
-	glClearColor(rJanela, gJanela, bJanela, 1.0f);
+	printf("Escolha a cor da janela: ");
+	scanf("%f %f %f: ", &rJanela, &hJanela, &bJanela);
+	changeColorJanela(rJanela, hJanela, bJanela);
+	glClearColor(rJanela, hJanela, bJanela, 1.0f);
 }

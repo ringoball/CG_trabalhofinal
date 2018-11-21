@@ -26,12 +26,14 @@ static int translationX[100] = {0}, translationY[100] = {0}, rotationX[100] = {0
 static GLfloat angle, f_aspect;
 static float xj = 1, yj = 1, zj = 1;
 
+
 using namespace std;
 
 void draw(int);
 void display();
 void changeColor(float, float, float);
 void changeScale(float, float, float);
+void changeColorJanela(float, float, float);
 void init();
 void visualization();
 void reshape();
@@ -46,5 +48,7 @@ void corJanela(float, float, float);
 void drawTriangleMesh(string);
 void fileReader(string);
 void updateMenu();
-void visualizacao();//(GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble,GLdouble, GLdouble, GLdouble);
+void visualizacao();//(double, double, double,double, double, double,double, double, double);
 void drawWire(int);
+void mudarPerspectivaObjeto(double, double, double,double, double, double,double, double, double);
+void changePerspectiva(double, double, double, double, double, double, double, double, double);

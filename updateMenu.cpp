@@ -33,8 +33,13 @@ void updateMenu(){
     cout << "8. Rotacionar no eixo Z (Horário), Tecla Z "<<endl<<endl;
     cout << "____Funções de transformação____________"<<endl;
     cout << endl;
-    cout << "9. Mudança de cor, Tecla m"<<endl;
-    cout << "10. Mudança de escala, Tecla s"<<endl;
-    cout << "11. Mudança de Cor de Fundo, tecla c"<<endl;
-
+    cout << "9. Mudança de cor do objeto, Tecla m"<<endl;
+    cout << "10. Mudança de cor da janela, Tecla j"<<endl;
+    cout << "11. Mudança de escala, Tecla s"<<endl;
+    cout << "12. Mudança de Cor de Fundo, tecla c"<<endl;
+    cout << "13. Para mudar de sólido para arame ou arame para sólido aperte = " << endl;
+    cout << endl;
+    cout << "____Funções de perspectiva______________" << endl;
+    cout << "14. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %, &, *, \" " <<endl;
+    cout << "15. Para volar a perspectiva inicial use / " << endl;
 }
