@@ -268,8 +268,6 @@ void keyboard (unsigned char key, int x, int y){
 			nObject++;
 			break;
 
-
-
 		// mudan�a de objetos
 		case '0':
 			shape = MESH;
