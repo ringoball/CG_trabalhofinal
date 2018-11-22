@@ -222,7 +222,7 @@ void keyboard (unsigned char key, int x, int y){
 	switch (key) {
 
 		// rota��o em torno do eixo X
-		
+
 		case'-':
 			changeObject = changeObject ? false:true;
 
@@ -254,10 +254,12 @@ void keyboard (unsigned char key, int x, int y){
 
 		case ',':
 			it > 0 ? it-- : it = nObject - 1;
+			printf("Voce esta no objeto %d\n", it + 1);
 			break;
 
 		case '.':
 			it < nObject-1 ? it++ : it = 0;
+			printf("Voce esta no objeto %d\n", it + 1);
 			break;
 
 		case '{':
