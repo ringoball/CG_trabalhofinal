@@ -42,6 +42,8 @@ void updateMenu(){
     cout << "____Funções de perspectiva______________" << endl;
     cout << "14. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %, &, *, \" " <<endl;
     cout << "15. Para volar a perspectiva inicial use / " << endl;
+
+    cout << "____COntrole de Modelos______________" << endl;
     cout << "16. Para adicionar um novo modelo ou deletar o ultimo modelo digite } e { respectivamente"<<endl;
     cout << "16. Para trocar o modelo a se alterar use ,(anterior) e .(proximo)" << endl;
 }
