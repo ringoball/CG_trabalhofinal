@@ -12,7 +12,7 @@
 
 bool changeObject=false;
 float R = 1, G = 0, B = 0;
-float scaleX = 1, scaleY = 1, scaleZ = 1;
+float scaleX[100], scaleY[100], scaleZ[100];
 int shape[100];
 int it = 0;
 int nObject = 1;
@@ -49,9 +49,9 @@ void changeColor(float i, float j, float k) {
 }
 
 void changeScale(float i, float j, float k) {
-	scaleX = i;
-	scaleY = j;
-	scaleZ = k;
+	scaleX[it] = i;
+	scaleY[it] = j;
+	scaleZ[it] = k;
 }
 
 // fun��o callback chamada para fazer o desenho
@@ -72,7 +72,7 @@ void display()
 		glTranslatef ((GLfloat) translationX[i]+i*100, 0.0, 0.0);
 		glTranslatef (0.0, (GLfloat) translationY[i], 0.0);
 
-		glScalef(scaleX, scaleY, scaleZ);
+		glScalef(scaleX[i], scaleY[i], scaleZ[i]);
 
 		// desenha o objeto
 		if(drawFormat[i])
@@ -414,6 +414,9 @@ int main(int argc, char** argv)
 {
 	for(int i=0;i<100;i++) {
 		shape[i] = 1;
+		scaleX[i] = 1;
+		scaleY[i] = 1;
+		scaleZ[i] = 1;
 		drawFormat[i] = false;
 	}
 	char sair;

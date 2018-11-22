@@ -37,13 +37,13 @@ void updateMenu(){
     cout << "10. Mudança de cor da janela, Tecla j"<<endl;
     cout << "11. Mudança de escala, Tecla s"<<endl;
     // cout << "12. Mudança de Cor de Fundo, tecla c"<<endl;
-    cout << "13. Para mudar de sólido para arame ou arame para sólido aperte = " << endl;
+    cout << "12. Para mudar de sólido para arame ou arame para sólido aperte = " << endl;
     cout << endl;
     cout << "____Funções de perspectiva______________" << endl;
-    cout << "14. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %, &, *, \" " <<endl;
-    cout << "15. Para volar a perspectiva inicial use / " << endl;
+    cout << "13. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %, &, *, \" " <<endl;
+    cout << "14. Para volar a perspectiva inicial use / " << endl;
 
-    cout << "____COntrole de Modelos______________" << endl;
-    cout << "16. Para adicionar um novo modelo ou deletar o ultimo modelo digite } e { respectivamente"<<endl;
+    cout << "____Controle de Modelos______________" << endl;
+    cout << "15. Para adicionar um novo modelo ou deletar o ultimo modelo digite } e { respectivamente"<<endl;
     cout << "16. Para trocar o modelo a se alterar use ,(anterior) e .(proximo)" << endl;
 }
