@@ -6,7 +6,7 @@ void updateMenu(){
     cout << endl;
     cout << "Mudança de Objetos: Objeto,numero"<<endl;
     cout << "---------------------------------"<<endl;
-    cout << "Seu Objeto,0"<<endl;
+    // cout << "Seu Objeto,0"<<endl;
     cout << "TEAPOT,1"<<endl;
     cout << "CUBE,2"<<endl;
     cout << "SPHERE,3"<<endl;
@@ -36,10 +36,12 @@ void updateMenu(){
     cout << "9. Mudança de cor do objeto, Tecla m"<<endl;
     cout << "10. Mudança de cor da janela, Tecla j"<<endl;
     cout << "11. Mudança de escala, Tecla s"<<endl;
-    cout << "12. Mudança de Cor de Fundo, tecla c"<<endl;
+    // cout << "12. Mudança de Cor de Fundo, tecla c"<<endl;
     cout << "13. Para mudar de sólido para arame ou arame para sólido aperte = " << endl;
     cout << endl;
     cout << "____Funções de perspectiva______________" << endl;
     cout << "14. Para mudar de perspectiva use os seguintes caracteres especiais: !, @, #, $, %, &, *, \" " <<endl;
     cout << "15. Para volar a perspectiva inicial use / " << endl;
+    cout << "16. Para adicionar um novo modelo ou deletar o ultimo modelo digite } e { respectivamente"<<endl;
+    cout << "16. Para trocar o modelo a se alterar use ,(anterior) e .(proximo)" << endl;
 }
