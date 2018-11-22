@@ -22,7 +22,7 @@
 #define DODECAHEDRON 9
 
 // declara��o de vari�veis globais
-static int translationX = 0, translationY = 0, rotationX = 0, rotationY = 0, rotationZ = 0;
+static int translationX[100] = {0}, translationY[100] = {0}, rotationX[100] = {0}, rotationY[100] = {0}, rotationZ[100] = {0};
 static GLfloat angle, f_aspect;
 static float xj = 1, yj = 1, zj = 1;
 

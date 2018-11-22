@@ -46,6 +46,7 @@ void draw(int shape){
 
 		case MESH:
 			drawTriangleMesh("miniCooper.obj");
+			
 			break;
 		default:
 			break;

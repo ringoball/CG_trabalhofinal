@@ -10,13 +10,24 @@
 #include <string.h>
 #include "header.h"
 
+bool changeObject=false;
 float R = 1, G = 0, B = 0;
 float scaleX = 1, scaleY = 1, scaleZ = 1;
 int shape = 1;
+int it = 0;
+int nObject = 1;
 bool drawFormat = false;
 double eyeX = 0, eyeY = 80, eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1, upZ = 0;
 //0, 80, 200, 0, 0, 0, 0, 1, 0
-float j1 = 1.0, j2 = 1.0, j3 = 1.0;
+float jR = 1.0, jG = 1.0, jB = 1.0;
+
+
+void changeColorJanela(float i, float j, float k) {
+	jR = i;
+	jG = j;
+	jB = k;
+}
+
 
 void changePerspectiva(double i, double j, double k, double l, double m, double n,double o, double p, double q)
 {
@@ -29,12 +40,6 @@ void changePerspectiva(double i, double j, double k, double l, double m, double 
 	upX = o;
  	upY = p;
 	upZ = q;
-}
-
-void changeColorJanela(float i, float j, float k) {
-	j1 = i;
-	j2 = j;
-	j3 = k;
 }
 
 void changeColor(float i, float j, float k) {
@@ -56,28 +61,32 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glColor3f(R,G,B);
 
-	glPushMatrix();
+	for(int i=0;i<nObject;i++) {
 
-	        // cria matrizes de transforma��o
-	glRotatef ((GLfloat) rotationX, 1.0, 0.0, 0.0);
-	glRotatef ((GLfloat) rotationY, 0.0, 1.0, 0.0);
-	glRotatef ((GLfloat) rotationZ, 0.0, 0.0, 1.0);
+		glPushMatrix();
 
-	glTranslatef ((GLfloat) translationX, 0.0, 0.0);
-	glTranslatef (0.0, (GLfloat) translationY, 0.0);
+		// cria matrizes de transforma��o
+		glRotatef ((GLfloat) rotationX[i], 1.0, 0.0, 0.0);
+		glRotatef ((GLfloat) rotationY[i], 0.0, 1.0, 0.0);
+		glRotatef ((GLfloat) rotationZ[i], 0.0, 0.0, 1.0);
 
-	glScalef(scaleX, scaleY, scaleZ);
+		glTranslatef ((GLfloat) i*100, 0.0, 0.0);
+		glTranslatef (0.0, (GLfloat) translationY[i], 0.0);
 
-	// desenha o objeto
-	if(drawFormat)
-		drawWire(shape);
-	else
-		draw(shape);
+		glScalef(scaleX, scaleY, scaleZ);
 
-	glPopMatrix();
+		// desenha o objeto
+		if(drawFormat)
+			drawWire(shape);
+		else
+			draw(shape);
+		glPopMatrix();
+	}
 
 	glutSwapBuffers();
 }
+
+
 
 // inicializa par�metros de rendering
 void init(void)
@@ -213,32 +222,51 @@ void keyboard (unsigned char key, int x, int y){
 	switch (key) {
 
 		// rota��o em torno do eixo X
+		
+		case'-':
+			changeObject = changeObject ? false:true;
+
 		case 'x':
-			rotationX = (rotationX + 5) % 360;
+			rotationX[it] = (rotationX[it] + 5) % 360;
 			break;
 
 		case 'X':
-			rotationX = (rotationX - 5) % 360;
+			rotationX[it] = (rotationX[it] - 5) % 360;
 			break;
 
 		// rota��o em torno do eixo Y
 		case 'y':
-			rotationY = (rotationY + 5) % 360;
+			rotationY[it] = (rotationY[it] + 5) % 360;
 			break;
 
 		case 'Y':
-			rotationY = (rotationY - 5) % 360;
+			rotationY[it] = (rotationY[it] - 5) % 360;
 			break;
 
 		// rota��o em torno do eixo Z
 		case 'z':
-			rotationZ = (rotationZ + 5) % 360;
+			rotationZ[it] = (rotationZ[it] + 5) % 360;
 			break;
 
 		case 'Z':
-			rotationZ = (rotationZ - 5) % 360;
+			rotationZ[it] = (rotationZ[it] - 5) % 360;
 			break;
 
+		case ',':
+			it > 0 ? it-- : it = nObject - 1;
+			break;
+
+		case '.':
+			it < nObject-1 ? it++ : it = 0;
+			break;
+
+		case '{':
+			nObject--;
+			break;
+
+		case '}':
+			nObject++;
+			break;
 
 		// mudan�a de objetos
 		case '0':
@@ -321,8 +349,9 @@ void keyboard (unsigned char key, int x, int y){
 			drawFormat = drawFormat ? false : true;
 			break;
 		case 'j':
-			corJanela(j1, j2, j3);
+			corJanela(jR, jG, jB);
 			break;
+
 		// case 'p':
 		// 	perspectiva();
 		// 	break;
@@ -350,20 +379,20 @@ void specialkey (int key, int x, int y){
 	switch (key) {
 		// transla��o na dire��o do eixo X
 		case GLUT_KEY_RIGHT:
-			translationX = (translationX + 5);
+			translationX[it] = (translationX[it] + 5);
 			break;
 
 		case GLUT_KEY_LEFT:
-			translationX = (translationX - 5);
+			translationX[it] = (translationX[it] - 5);
 			break;
 
 		// rota��o na dire��o do eixo Y
 		case GLUT_KEY_UP:
-			translationY = (translationY + 5);
+			translationY[it] = (translationY[it] + 5);
 			break;
 
 		case GLUT_KEY_DOWN:
-			translationY = (translationY - 5);
+			translationY[it] = (translationY[it] - 5);
 			break;
 
 		default:
@@ -391,8 +420,10 @@ int main(int argc, char** argv)
 	glutCreateWindow("Visualizacao 3D");
 	init();
 	updateMenu();
+
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
+
 	glutMouseFunc(mouse);
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(specialkey);
