@@ -13,12 +13,12 @@
 bool changeObject=false;
 float R = 1, G = 0, B = 0;
 float scaleX = 1, scaleY = 1, scaleZ = 1;
-int shape = 1;
+int shape[100];
 int it = 0;
 int nObject = 1;
-bool drawFormat = false;
+bool drawFormat[100] = {false};
 double eyeX = 0, eyeY = 80, eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1, upZ = 0;
-//0, 80, 200, 0, 0, 0, 0, 1, 0
+//0, 80, 200, 0, 0, 0, 0, 1, 0	
 float jR = 1.0, jG = 1.0, jB = 1.0;
 
 
@@ -60,7 +60,6 @@ void display()
 	// limpa a janela e o depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glColor3f(R,G,B);
-
 	for(int i=0;i<nObject;i++) {
 
 		glPushMatrix();
@@ -70,16 +69,16 @@ void display()
 		glRotatef ((GLfloat) rotationY[i], 0.0, 1.0, 0.0);
 		glRotatef ((GLfloat) rotationZ[i], 0.0, 0.0, 1.0);
 
-		glTranslatef ((GLfloat) i*100, 0.0, 0.0);
+		glTranslatef ((GLfloat) translationX[i]+i*100, 0.0, 0.0);
 		glTranslatef (0.0, (GLfloat) translationY[i], 0.0);
 
 		glScalef(scaleX, scaleY, scaleZ);
 
 		// desenha o objeto
-		if(drawFormat)
-			drawWire(shape);
+		if(drawFormat[i])
+			drawWire(shape[i]);
 		else
-			draw(shape);
+			draw(shape[i]);
 		glPopMatrix();
 	}
 
@@ -270,43 +269,43 @@ void keyboard (unsigned char key, int x, int y){
 
 		// mudan�a de objetos
 		case '0':
-			shape = MESH;
+			shape[it] = MESH;
 			break;
 
 		case '1':
-			shape = TEAPOT;
+			shape[it] = TEAPOT;
 			break;
 
 		case '2':
-			shape = CUBE;
+			shape[it] = CUBE;
 			break;
 
 		case '3':
-			shape = SPHERE;
+			shape[it] = SPHERE;
 			break;
 
 		case '4':
-			shape = CONE;
+			shape[it] = CONE;
 			break;
 
 		case '5':
-			shape = TORUS;
+			shape[it] = TORUS;
 			break;
 
 		case '6':
-			shape = ICOSAHEDRON;
+			shape[it] = ICOSAHEDRON;
 			break;
 
 		case '7':
-			shape = OCTAHEDRON;
+			shape[it] = OCTAHEDRON;
 			break;
 
 		case '8':
-			shape = TETRAHEDRON;
+			shape[it] = TETRAHEDRON;
 			break;
 
 		case '9':
-			shape = DODECAHEDRON;
+			shape[it] = DODECAHEDRON;
 			break;
 
 		case 'm' :
@@ -346,9 +345,9 @@ void keyboard (unsigned char key, int x, int y){
 			mudarPerspectivaObjeto(0.0, 80.0, 200.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 			break;
 		case '=':
-			drawFormat = drawFormat ? false : true;
+			drawFormat[it] = drawFormat[it] ? false : true;
 			break;
-		case 'j':
+		case 'j': 
 			corJanela(jR, jG, jB);
 			break;
 
@@ -411,6 +410,10 @@ void specialkey (int key, int x, int y){
 // programa principal
 int main(int argc, char** argv)
 {
+	for(int i=0;i<100;i++) {
+		shape[i] = 1;
+		drawFormat[i] = false;
+	}
 	char sair;
 //	ler();
 	glutInit(&argc, argv);
