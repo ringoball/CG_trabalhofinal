@@ -19,13 +19,13 @@ int nObject = 1;
 bool drawFormat = false;
 double eyeX = 0, eyeY = 80, eyeZ = 200, centerX = 0, centerY = 0, centerZ = 0, upX = 0, upY = 1, upZ = 0;
 //0, 80, 200, 0, 0, 0, 0, 1, 0
-float j1 = 1.0, j2 = 1.0, j3 = 1.0;
+float jR = 1.0, jG = 1.0, jB = 1.0;
 
 
 void changeColorJanela(float i, float j, float k) {
-	j1 = i;
-	j2 = j;
-	j3 = k;
+	jR = i;
+	jG = j;
+	jB = k;
 }
 
 
@@ -351,7 +351,7 @@ void keyboard (unsigned char key, int x, int y){
 			drawFormat = drawFormat ? false : true;
 			break;
 		case 'j':
-			corJanela(j1, j2, j3);
+			corJanela(jR, jG, jB);
 			break;
 
 		// case 'p':
